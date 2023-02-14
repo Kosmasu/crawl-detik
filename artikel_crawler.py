@@ -2,8 +2,6 @@ import requests
 import re
 
 def crawl(url):
-  url = "https://inet.detik.com/science/d-6568039/bola-api-menyala-lintasi-langit-eropa"
-
   text = requests.get(url).text
   page = {}
 
