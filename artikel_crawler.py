@@ -6,8 +6,12 @@ def crawl(url):
   page = {}
 
   # find first article tag
-  article = re.search(r"<article([\s\S\n]*?)>([\s\S\n]+?)</article>", text).group(2)
-  del text
+  try:
+    article = re.search(r"<article([\s\S\n]*?)>([\s\S\n]+?)</article>", text).group(2)
+    del text
+  except:
+    print("\terror crawl first article tag!\n url:", url)
+    return None
 
   # f = open("coba.html", "w", encoding="utf-8")
   # f.write(article)
@@ -23,6 +27,7 @@ def crawl(url):
     del header
   except:
     print("\terror crawl header!\n url:", url)
+    return None
 
   # parsing content
   try:
@@ -31,5 +36,6 @@ def crawl(url):
     del body
   except:
     print("\terror crawl body!\n url:", url)
+    return None
   return page
 

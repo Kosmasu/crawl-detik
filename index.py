@@ -17,8 +17,14 @@ with open(f"hasil/{namaFileKatalog}.json", 'w') as f:
 
 corpus = []
 for index, article in enumerate(articles):
-  corpus.append(artikel_crawler.crawl(article["link"]))
-  print(f"{index}.\tcrawling article...")
+  print(f"{index + 1}.\tcrawling article...")
+  temp = artikel_crawler.crawl(article["link"])
+  if temp:
+    corpus.append(temp)
+    print(f"\tberhasil.")
+  else:
+    print(f"\tgagal.")
+    
 
 with open(f"hasil/{namaFileCorpus}.json", 'w') as f:
   json.dump(corpus, f)

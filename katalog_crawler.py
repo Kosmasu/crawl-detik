@@ -3,10 +3,10 @@ import json
 import re
 
 def crawl(url, jumlahPage):
+  articles = []
   for i in range(jumlahPage):
+    print(f"{i + 1}.\tcrawling page...")
     text = requests.get(f"{url}/{i + 1}").text
-
-    articles = []
     for match in re.finditer(r"<article([\s\S\n]+?)>([\s\S\n]+?)</article>", text):
       article = {}
       article["image"] = re.search(r"i-img=\'([\s\S]+?)\'", match.group(1)).group(1)
