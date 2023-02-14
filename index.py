@@ -1,16 +1,23 @@
 import json
 import katalog_crawler
 import artikel_crawler
+import os
 
 URL_KATALOG = "https://inet.detik.com/indeks"
 namaFileKatalog = "katalog"
 namaFileCorpus = "corpus"
+resultdir = "hasil"
 
 page = int(input("Jumlah page >> "))
 
 print("crawling katalog...")
 articles = katalog_crawler.crawl(URL_KATALOG, page)
-print("katalog length:", len(articles))
+# 1 page 20 artikel
+print("katalog length:", len(articles)) 
+
+# create hasil dir if not exist
+if (not os.path.exists(resultdir) or not os.path.isdir(resultdir)):
+  os.mkdir(resultdir)
 
 with open(f"hasil/{namaFileKatalog}.json", 'w') as f:
   json.dump(articles, f)
