@@ -17,6 +17,7 @@ tokenizer = RegexpTokenizer(r'\w+')
 wordCount = 0
 sentenceCount = 0
 documentCount = 0
+uniqueWords = set()
 
 documents = corpus.findAll('doc')
 documentCount = len(documents)
@@ -27,12 +28,13 @@ for document in documents:
     words = tokenizer.tokenize(sentence.string)
     wordCount += len(words)
     for word in words:
-      print("word:", word)
+      uniqueWords.add(word)
   break
 
 print("wordCount:", wordCount)
 print("sentenceCount:", sentenceCount)
 print("documentCount:", documentCount)
 
+print("amount of unique words:", len(uniqueWords))
 print("avg word in sentence:", wordCount/sentenceCount)
 print("avg sentence in document:", sentenceCount/documentCount)
