@@ -3,7 +3,7 @@
 
 from bs4 import BeautifulSoup 
 
-with open('hasil/corpus.xml', 'r') as f:
+with open('hasil/corpus.xml', 'r', encoding='utf8') as f:
   corpus = BeautifulSoup(f.read(), 'xml') 
 
 # - berapa jumlah kata unik
@@ -29,7 +29,6 @@ for document in documents:
     wordCount += len(words)
     for word in words:
       uniqueWords.add(word)
-  break
 
 print("wordCount:", wordCount)
 print("sentenceCount:", sentenceCount)

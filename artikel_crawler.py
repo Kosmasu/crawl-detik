@@ -1,5 +1,6 @@
 import requests
 import re
+from nltk import word_tokenize
 
 def removesuffix(line,suffix):
   if line.endswith(suffix):
@@ -44,6 +45,11 @@ def crawl(url):
   try:
     body = re.search(r"<div([\s\S\n]+?)id=\"detikdetailtext\">([\s\S\n]+?)detail__body-tag([\s\S\n]+?)</div>", article).group(2)
     page["contents"] = re.findall(r"<p>([^<>]+?)</p>", body)
+    # contents = re.findall(r"<p>([^<>]+?)</p>", body)
+    # words = word_tokenize(contents)
+    # for word in words:
+
+    # page["contents"] = contents
     del body
   except:
     print("\terror crawl body!\n url:", url)
