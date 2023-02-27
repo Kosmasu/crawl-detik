@@ -1,6 +1,5 @@
 import requests
 import re
-from nltk import word_tokenize
 
 def removesuffix(line,suffix):
   if line.endswith(suffix):
